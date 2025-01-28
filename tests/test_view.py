@@ -10,10 +10,7 @@ class ManufacturerTestCase(TestCase):
     def setUp(self):
         name = "BMW"
         country = "Germany"
-        self.manufacturer = Manufacturer.objects.create(
-            name=name,
-            country=country
-        )
+        self.manufacturer = Manufacturer.objects.create(name=name, country=country)
 
         self.user = get_user_model().objects.create_user(
             username="admin",
@@ -25,7 +22,7 @@ class ManufacturerTestCase(TestCase):
 
     def test_context_data(self):
         self.client.login(username="admin", password="<PASSWORD>")
-        url = reverse('taxi:manufacturer-list')
+        url = reverse("taxi:manufacturer-list")
         res = self.client.get(url)
         self.assertIn("search_form", res.context)
 
@@ -44,10 +41,7 @@ class CarTestCase(TestCase):
     def setUp(self):
         name = "BMW"
         country = "Germany"
-        self.manufacturer = Manufacturer.objects.create(
-            name=name,
-            country=country
-        )
+        self.manufacturer = Manufacturer.objects.create(name=name, country=country)
         username = "Admin"
         password = "<PASSWORD>"
         license_number = "LAT12345"
@@ -70,7 +64,7 @@ class CarTestCase(TestCase):
 
     def test_context_data(self):
         self.client.login(username="Admin", password="<PASSWORD>")
-        url = reverse('taxi:car-list')
+        url = reverse("taxi:car-list")
         res = self.client.get(url)
         self.assertIn("search_form", res.context)
 
@@ -97,7 +91,7 @@ class DriversTestCase(TestCase):
 
     def test_context_data(self):
         self.client.login(username="admin", password="<PASSWORD>")
-        url = reverse('taxi:driver-list')
+        url = reverse("taxi:driver-list")
         res = self.client.get(url)
         self.assertIn("search_form", res.context)
 

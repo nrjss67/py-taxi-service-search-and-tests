@@ -8,15 +8,12 @@ class ManufacturerModelTest(TestCase):
     def setUp(self):
         name = "BMW"
         country = "Germany"
-        self.manufacturer = Manufacturer.objects.create(
-            name=name,
-            country=country
-        )
+        self.manufacturer = Manufacturer.objects.create(name=name, country=country)
 
     def test_str(self):
         self.assertEqual(
             self.manufacturer.__str__(),
-            f"{self.manufacturer.name} {self.manufacturer.country}"
+            f"{self.manufacturer.name} {self.manufacturer.country}",
         )
 
 
@@ -40,7 +37,7 @@ class DriverModelTest(TestCase):
             self.driver.__str__(),
             f"{self.driver.username} "
             f"({self.driver.first_name} "
-            f"{self.driver.last_name})"
+            f"{self.driver.last_name})",
         )
 
 
@@ -48,10 +45,7 @@ class CarModelTest(TestCase):
     def setUp(self):
         name = "BMW"
         country = "Germany"
-        self.manufacturer = Manufacturer.objects.create(
-            name=name,
-            country=country
-        )
+        self.manufacturer = Manufacturer.objects.create(name=name, country=country)
         username = "Admin"
         password = "<PASSWORD>"
         license_number = "LAT12345"
@@ -71,7 +65,4 @@ class CarModelTest(TestCase):
         self.car.drivers.set([self.driver])
 
     def test_str(self):
-        self.assertEqual(
-            self.car.__str__(),
-            self.car.model
-        )
+        self.assertEqual(self.car.__str__(), self.car.model)
